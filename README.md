@@ -1,21 +1,22 @@
-# jenkins-pipeline-demo1
-My first Jenkins CI/CD project
 pipeline {
     agent any
+
     stages {
-        stage('Build') {
+        stage('Install dependencies') {
             steps {
-                echo 'Building the application...'
+                bat 'pip install -r requirements.txt'
             }
         }
-        stage('Test') {
+
+        stage('Run Tests') {
             steps {
-                echo 'Running tests...'
+                bat 'pytest tests'
             }
         }
+
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
+                echo '✅ Deployment steps go here (optional)'
             }
         }
     }
